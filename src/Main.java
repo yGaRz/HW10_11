@@ -108,6 +108,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String strName = scanner.nextLine();
         //Перебираем различные вариации для считывания файла
+
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(strName))){
             Person p = (Person)ois.readObject();
             System.out.println("Java-сериализация:");
@@ -136,6 +137,7 @@ public class Main {
         catch (Exception ex){
             System.out.println(ex.toString() + ex.getMessage());
         }
+
         try(BufferedReader fis = new BufferedReader(new InputStreamReader(new FileInputStream(strName)))){
             Scanner scanner1 = new Scanner(fis);
             Person person = new Person(fis.readLine(), Integer.parseInt( fis.readLine()),Double.parseDouble( fis.readLine()));
@@ -146,8 +148,10 @@ public class Main {
             System.out.println(ex.getMessage());
         }
         catch (Exception ex){
+            //Большое количество разнообразных вариантов ошибок.
             System.out.println(ex.toString() + ex.getMessage());
         }
+        System.out.println("Декодирование файла не удалось.");
     }
 
     public static void printCreateFileMenu(){
