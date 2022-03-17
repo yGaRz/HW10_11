@@ -1,14 +1,25 @@
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
+
 class  PersonException extends Exception{
     PersonException(String message){
         super(message);
     }
 }
-
+@JsonAutoDetect
 public class Person implements Serializable {
-    private String name;
-    private int age;
-    private double salary;
+    @JsonProperty("name")
+    public String name;
+    @JsonProperty("age")
+    public int age;
+    @JsonProperty("salary")
+    public double salary;
+    //Пустой конструктор необходим для сериализации json
+    public Person(){}
+
     public Person(String name, int age, double salary) throws PersonException {
         this.name = name;
         if(age<0)
